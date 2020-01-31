@@ -1,0 +1,22 @@
+
+
+Clase models.Game.
+Constructor:
+ - secret
+ - board
+ 
+Métodos:
+ - proposed
+ - isWinner
+ - isCompleted
+
+
+Tres clases
+ - game
+ - secretCombination
+ - proposedCombination
+ 
+Sin undo ni redo
+
+
+ 

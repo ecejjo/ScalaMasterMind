@@ -10,8 +10,10 @@ object ResultView {
 
   def show (result: Result): String = {
     var resultString = "";
-    for (counter <- 0 to RESULT_SIZE - 1) {
-      resultString += result.getValue(counter);
+    if ( ! result.getValue.isEmpty) {
+      for (counter <- 0 to result.getValue.size) {
+        resultString += result.getValue(counter);
+      }
     }
     resultString
   }

@@ -1,6 +1,7 @@
 package models
 
-case class Board(combinations : List[Combination] = List()) {
+case class Board(combinations : List[Combination] = List(),
+                 results : List[Result] = List() ) {
 
   private val secret_ = List('x', 'x', 'x', 'x');
   private val combinations_ = combinations
@@ -17,16 +18,16 @@ case class Board(combinations : List[Combination] = List()) {
   }
 
   def put(combination: Combination) : Board = {
-    println("Board.put()")
-    new Board(combination::combinations)
+    new Board(combination::this.combinations_,
+              new Result().calculate(this.secret_, combination)::this.results_)
   }
 
   def getCombination(index: Int) : Combination = {
-    this.combinations_.tail.head
+    this.combinations_(index);
   }
 
   def getResult(index: Int) : Result = {
-    this.results_.tail.head
+    this.results_(index);
   }
 
   def isComplete: Boolean = {

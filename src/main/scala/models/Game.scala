@@ -24,19 +24,6 @@ class Game(board: Board = new Board()) {
     }
   }
 
-  def getResult(index: Int): Result = {
-    if (this.board_.getResults() == 0) {
-      null
-    }
-    else if (index > this.board_.combinations.size - 1) {
-      null
-    }
-    else {
-      this.board_.getResult(index)
-    }
-  }
-
-
   def isWinner(): Boolean = this.board_.isWinner;
 
   def isComplete: Boolean = board_.isComplete

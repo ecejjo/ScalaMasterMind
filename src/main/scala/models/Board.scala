@@ -1,11 +1,9 @@
 package models
 
-case class Board(combinations : List[Combination] = List(),
-                 results : List[Result] = List() ) {
+case class Board(combinations : List[Combination] = List()) {
 
   private val secret_ = List('x', 'x', 'x', 'x');
   private val combinations_ = combinations
-  private val results_ = List(Result())
 
   private val MAX_COMBINATIONS = 3;
 
@@ -13,21 +11,13 @@ case class Board(combinations : List[Combination] = List(),
     this.secret_;
   }
 
-  def getResults(): Any = {
-    this.results_;
-  }
-
   def put(combination: Combination) : Board = {
-    new Board(combination::this.combinations_,
-              new Result().calculate(this.secret_, combination)::this.results_)
+    // new Board(combination::this.combinations_)
+    new Board(this.combinations_ :+ combination)
   }
 
   def getCombination(index: Int) : Combination = {
     this.combinations_(index);
-  }
-
-  def getResult(index: Int) : Result = {
-    this.results_(index);
   }
 
   def isComplete: Boolean = {
@@ -35,6 +25,6 @@ case class Board(combinations : List[Combination] = List(),
   }
 
   def isWinner: Boolean = {
-    false;
+    combinations_.last.isWinner(this.secret_);
   }
 }

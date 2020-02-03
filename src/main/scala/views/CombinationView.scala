@@ -15,11 +15,11 @@ object CombinationView {
   }
 
   def show (combination: Combination): String = {
-    var result = "";
+    var stringToShow = "";
     for (counter <- 0 to COMBINATION_SIZE - 1) {
-      result += combination.getValue(counter);
+      stringToShow += combination.getValue(counter);
     }
-    result
+    stringToShow += " - " + ResultView.show(combination.getResult);
+    stringToShow
   }
-
 }

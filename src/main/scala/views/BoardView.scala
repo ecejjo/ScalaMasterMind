@@ -13,9 +13,8 @@ object BoardView {
     var i = 0;
     while (game.getCombination(i) != null) {
       val combination = game.getCombination(i);
-      val result = game.getResult(i);
-      boardString +=  " - " + i + ".- " + CombinationView.show(combination) + " - " + ResultView.show(result) + "\n"
       i += 1;
+      boardString +=  " - " + i + ".- " + CombinationView.show(combination) + "\n"
     }
     println(boardString)
   }

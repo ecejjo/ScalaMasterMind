@@ -11,7 +11,7 @@ object ResultView {
   def show (result: Result): String = {
     var resultString = "";
     if ( ! result.getValue.isEmpty) {
-      for (counter <- 0 to result.getValue.size) {
+      for (counter <- 0 to result.getValue.size - 1) {
         resultString += result.getValue(counter);
       }
     }

@@ -9,10 +9,8 @@ object CombinationView {
   private val COMBINATION_SIZE = 4;
 
   def read: Combination = {
-    var combination = new ListBuffer[Char]()
-    for (counter <- 0 to COMBINATION_SIZE - 1) {
-      combination += GestorIO.readChar("Color" + counter + "? [GBRY]")
-    }
+    var combination = new String
+    combination += GestorIO.readString("Your proposal? [GBRY]")
     Combination(combination.toList)
   }
 

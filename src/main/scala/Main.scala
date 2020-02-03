@@ -10,6 +10,7 @@ object Main {
       GameView.write(game)
         game = game.propose(CombinationView.read)
         if (game.isWinner()){
+          GameView.write(game)
           GestorIO.write("You win!!")
           return
       }

@@ -12,8 +12,7 @@ case class Board(combinations : List[Combination] = List()) {
   }
 
   def put(combination: Combination) : Board = {
-    // new Board(combination::this.combinations_)
-    new Board(this.combinations_ :+ combination)
+    new Board(this.combinations_ :+ combination.calculateResult(this.secret_))
   }
 
   def getCombination(index: Int) : Combination = {
@@ -25,6 +24,6 @@ case class Board(combinations : List[Combination] = List()) {
   }
 
   def isWinner: Boolean = {
-    combinations_.last.isWinner(this.secret_);
+    combinations_.last.isWinner();
   }
 }

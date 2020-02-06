@@ -2,7 +2,7 @@ package models
 
 case class Board(combinations : List[Combination] = List()) {
 
-  private val secret_ = List('x', 'x', 'x', 'x');
+  private val secret_ = List('G', 'G', 'W', 'Y');
   private val combinations_ = combinations
 
   private val MAX_COMBINATIONS = 3;

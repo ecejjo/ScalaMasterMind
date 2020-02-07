@@ -13,15 +13,34 @@ case class Result(value: List[Char] = List()) {
   }
 
   def calculate(secret: List[Char], combination: Combination): Result = {
-    var blacks: List[Char] = List()
-    new Result(findBlacks(secret, combination.getValue, blacks));
+    var blacks, whites, trimmed: List[Char] = List()
+    new Result(
+      trimWhites(
+        findBlacks(secret, combination.getValue, blacks),
+        findWhites(secret, combination.getValue, whites),
+        trimmed
+      )
+    );
+  }
+
+  def trimWhites(blacks: List[Char] = List(),
+                 whites: List[Char] = List(),
+                 trimmed: List[Char] = List()
+                            ): List[Char] = {
+    println("...................................")
+    println("blacks is: " + blacks);
+    println("whites is: " + whites);
+    blacks.isEmpty match {
+      case true => trimmed ::: whites
+      case false => trimWhites(blacks.tail, whites.tail, blacks.head :: trimmed);
+    }
   }
 
   def findBlacks(secret: List[Char], proposed: List[Char], blacks: List[Char]): List[Char] = {
     println("...................................")
     println("secret is: " + secret);
     println("combination is: " + proposed);
-    println("result is: " + blacks);
+    println("blacks is: " + blacks);
     secret.isEmpty match {
       case true => blacks;
       case false => {
@@ -34,29 +53,20 @@ case class Result(value: List[Char] = List()) {
     }
   }
 
-  /*
-    for (i <- 0 to combination.getValue.size - 1) {
-      secret(i) == combination.getValue(i) match {
-        case true => {
-          this.value_ = this.value_ :+ 'B'
-          secret.updated(i, '_'); // Avoids duplicate results
+  def findWhites(secret: List[Char], proposed: List[Char], whites: List[Char]): List[Char] = {
+    println("...................................")
+    println("secret is: " + secret);
+    println("combination is: " + proposed);
+    println("whites is: " + whites);
+    proposed.isEmpty match {
+      case true => whites;
+      case false => {
+        if (secret.contains(proposed.head)) {
+          findWhites(secret, proposed.tail, whites :+ 'W');
         }
-        case false => findWhites(secret, combination)
+        else
+          findWhites(secret, proposed.tail, whites);
       }
     }
-    new Result()
   }
-
-  def findWhites(secret: List[Char], combination: Combination): Result = {
-    for (j <- i to combination.getValue.size - 1) {
-      secret(j) == combination.getValue(i) match {
-        case true => {
-          this.value_ = this.value_ :+ 'W'
-          secret.updated(j, '_'); // Avoids duplicate results
-    }
-    case false => println("No black, nor white")
-    new Result()
-  }
-   */
-
 }

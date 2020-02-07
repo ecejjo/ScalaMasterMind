@@ -1,21 +1,24 @@
 package models
 
-case class Board(combinations : List[Combination] = List()) {
+case class Board(secret: List[Char] = List(),
+                 combinations : List[Combination] = List()) {
 
   private val colors = List('G', 'B', 'R', 'Y', 'B', 'W');
 
   private val SECRET_SIZE = 4;
-  private val secret_ = randomSecret(List());
+  private var secret_ = secret;
 
   private val MAX_COMBINATIONS = 3;
   private val combinations_ = combinations
 
-
-  def getSecret(): Any = {
-    this.secret_;
+  def getSecret(): List[Char] = {
+    println("In getSecret()")
+    if (this.secret.isEmpty) this.secret_ = randomSecret(List())
+    this.secret_
   }
 
   def randomSecret(secret : List[Char]): List[Char] = {
+    println("In randomSecret()")
     secret.size match {
       case SECRET_SIZE => secret
       case default => {
@@ -26,7 +29,7 @@ case class Board(combinations : List[Combination] = List()) {
   }
 
   def put(combination: Combination) : Board = {
-    new Board(this.combinations_ :+ combination.calculateResult(this.secret_))
+    new Board(this.secret_, this.combinations_ :+ combination.calculateResult(this.secret_))
   }
 
   def getCombination(index: Int) : Combination = {

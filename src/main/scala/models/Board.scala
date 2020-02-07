@@ -35,7 +35,9 @@ case class Board (secret: List[Char] = List(),
   }
 
   def getCombination(index: Int) : Combination = {
-    this.combinations_(index);
+    if (this.combinations_.isEmpty) null
+    else if (index > this.combinations_.size - 1) null
+    else this.combinations_(index);
   }
 
   def isComplete: Boolean = {

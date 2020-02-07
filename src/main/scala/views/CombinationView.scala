@@ -10,7 +10,7 @@ object CombinationView {
 
   def read: Combination = {
     var combination = new String
-    combination += GestorIO.readString("Your proposal? [GBRY]")
+    combination += GestorIO.readString("Your proposal? ")
     Combination(combination.toList)
   }
 

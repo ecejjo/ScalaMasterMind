@@ -23,4 +23,11 @@ class Game(board: Board = new Board()) {
   def isWinner(): Boolean = this.board_.isWinner;
 
   def isComplete: Boolean = board_.isComplete
+
+  override def equals(that: Any): Boolean =
+    that match {
+      case that: Game =>
+        board_ == that.board_
+      case _ => false
+    }
 }

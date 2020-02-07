@@ -4,7 +4,15 @@ class Game(board: Board = new Board()) {
 
   private val board_ = board
 
-  def getSecret(): Any = {
+  def getColors(): List[Char] = {
+    board_.getColors()
+  }
+
+  def getColorsText(): List[String] = {
+    board_.getColorsText()
+  }
+
+  def getSecret(): List[Char] = {
     board_.getSecret();
   }
 

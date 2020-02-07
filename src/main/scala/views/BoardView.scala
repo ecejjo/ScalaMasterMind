@@ -4,7 +4,19 @@ import models.Game
 
 object BoardView {
   def write(game: Game) = {
-    var boardString = " -- G: Green, B: Blue, R: Red, Y: Yellow --\n";
+
+    var boardString = "";
+
+    var colorsIndex = 0
+    boardString = "Available colors: \n - ";
+    for (colorsIndex <- 0 to game.getColors().size - 1) {
+      boardString += game.getColors()(colorsIndex);
+      boardString += ":";
+      boardString += game.getColorsText()(colorsIndex);
+      boardString += " ";
+    }
+    boardString += "\n";
+
     boardString += "Board Content is:\n"
     boardString += " - Secret is: " + game.getSecret().toString + "\n";
 

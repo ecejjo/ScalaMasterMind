@@ -3,7 +3,8 @@ package models
 case class Board(secret: List[Char] = List(),
                  combinations : List[Combination] = List()) {
 
-  private val colors = List('G', 'B', 'R', 'Y', 'B', 'W');
+  private val colors_ = List('G', 'B', 'R', 'Y', 'M', 'C');
+  private val colorsText_ = List("Green", "Blue", "Red", "Yellow", "Magenta", "Cyan");
 
   private val SECRET_SIZE = 4;
   private var secret_ = secret;
@@ -11,19 +12,25 @@ case class Board(secret: List[Char] = List(),
   private val MAX_COMBINATIONS = 3;
   private val combinations_ = combinations
 
+  def getColors(): List[Char] = {
+    this.colors_
+  }
+
+  def getColorsText(): List[String] = {
+    this.colorsText_
+  }
+
   def getSecret(): List[Char] = {
-    println("In getSecret()")
     if (this.secret.isEmpty) this.secret_ = randomSecret(List())
     this.secret_
   }
 
   def randomSecret(secret : List[Char]): List[Char] = {
-    println("In randomSecret()")
     secret.size match {
       case SECRET_SIZE => secret
       case default => {
         val random = new scala.util.Random
-        randomSecret(secret :+ colors(random.nextInt(colors.size - 1)))
+        randomSecret(secret :+ colors_(random.nextInt(colors_.size - 1)))
       };
     }
   }

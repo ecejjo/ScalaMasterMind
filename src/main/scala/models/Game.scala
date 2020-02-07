@@ -2,7 +2,7 @@ package models
 
 class Game(board: Board = new Board()) {
 
-  private val board_ = board
+  private val board_ : Board = board
 
   def getColors(): Color = {
     board_.getColors()
@@ -27,7 +27,7 @@ class Game(board: Board = new Board()) {
   override def equals(that: Any): Boolean =
     that match {
       case that: Game =>
-        board_ == that.board_
+        this.board_ == that.board_
       case _ => false
     }
 }

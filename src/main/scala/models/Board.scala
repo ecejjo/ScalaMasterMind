@@ -1,8 +1,7 @@
 package models
 
 case class Board (secret: List[Char] = List(),
-                 combinations : List[Combination] = List()
-                 )
+                  combinations : List[Combination] = List())
 {
   def getColors(): Color = {
     colors_
@@ -51,7 +50,9 @@ case class Board (secret: List[Char] = List(),
   override def equals(that: Any): Boolean =
     that match {
       case that: Board =>
-        combinations_ == that.combinations_
+        // (this.secret_ == that.secret_)
+        // &&
+         (this.combinations_ == that.combinations_)
       case _ => false
     }
 }

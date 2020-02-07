@@ -70,4 +70,10 @@ case class Result(value: List[Char] = List()) {
       }
     }
   }
+
+  override def equals(that: Any): Boolean =
+    that match {
+      case that: Result => this.value_ == that.value_
+      case _ => false
+    }
 }

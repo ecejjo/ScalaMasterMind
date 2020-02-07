@@ -17,7 +17,7 @@ class Game(board: Board = new Board()) {
   }
 
   def propose(combination: Combination): Game = {
-    new Game(board_.put(combination));
+    new Game(this.board_.put(combination));
   }
 
   def isWinner(): Boolean = this.board_.isWinner;

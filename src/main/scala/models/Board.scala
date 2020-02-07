@@ -1,24 +1,14 @@
 package models
 
-case class Board(secret: List[Char] = List(),
-                 combinations : List[Combination] = List()) {
-
-  private val colors_ = List('G', 'B', 'R', 'Y', 'M', 'C');
-  private val colorsText_ = List("Green", "Blue", "Red", "Yellow", "Magenta", "Cyan");
-
+case class Board (secret: List[Char] = List(),
+                 combinations : List[Combination] = List()
+                 ) extends Color
+{
   private val SECRET_SIZE = 4;
   private var secret_ = secret;
 
   private val MAX_COMBINATIONS = 3;
   private val combinations_ = combinations
-
-  def getColors(): List[Char] = {
-    this.colors_
-  }
-
-  def getColorsText(): List[String] = {
-    this.colorsText_
-  }
 
   def getSecret(): List[Char] = {
     if (this.secret.isEmpty) this.secret_ = randomSecret(List())
@@ -30,7 +20,7 @@ case class Board(secret: List[Char] = List(),
       case SECRET_SIZE => secret
       case default => {
         val random = new scala.util.Random
-        randomSecret(secret :+ colors_(random.nextInt(colors_.size - 1)))
+        randomSecret(secret :+ this.getColors()(random.nextInt(this.getColors().size - 1)))
       };
     }
   }

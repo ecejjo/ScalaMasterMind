@@ -13,23 +13,23 @@ case class Result(value: List[Char] = List()) {
   }
 
   def calculate(secret: List[Char], combination: Combination): Result = {
-    new Result(findBlacks(secret, combination));
+    var blacks: List[Char] = List()
+    new Result(findBlacks(secret, combination.getValue, blacks));
   }
 
-  def findBlacks(secret: List[Char], combination: Combination): List[Char] = {
+  def findBlacks(secret: List[Char], proposed: List[Char], blacks: List[Char]): List[Char] = {
     println("...................................")
     println("secret is: " + secret);
-    println("combination is: " + combination);
+    println("combination is: " + proposed);
+    println("result is: " + blacks);
     secret.isEmpty match {
-      case true => {
-        combination.getResult().getValue;
-      }
+      case true => blacks;
       case false => {
-        if (secret.head == combination.getValue.head) {
-          findBlacks(secret.tail, new Combination(combination.getValue.tail, new Result(combination.getResult().getValue :+ 'B')));
+        if (secret.head == proposed.head) {
+          findBlacks(secret.tail, proposed.tail, blacks :+ 'B');
         }
         else
-          findBlacks(secret.tail, new Combination(combination.getValue.tail, new Result(combination.getResult().getValue)));
+          findBlacks(secret.tail, proposed.tail, blacks);
       }
     }
   }

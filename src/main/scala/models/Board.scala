@@ -26,4 +26,11 @@ case class Board(combinations : List[Combination] = List()) {
   def isWinner: Boolean = {
     combinations_.last.isWinner();
   }
+
+  override def equals(that: Any): Boolean =
+    that match {
+      case that: Board =>
+        combinations_ == that.combinations_
+      case _ => false
+    }
 }

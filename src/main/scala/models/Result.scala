@@ -12,12 +12,12 @@ case class Result(value: List[Char] = List()) {
     this.value_ == List('B', 'B', 'B', 'B')
   }
 
-  def calculate(secret: List[Char], combination: Combination): Result = {
+  def calculate(secret: List[Char], proposed: List[Char]): Result = {
     var blacks, whites, trimmed: List[Char] = List()
     new Result(
       trimWhites(
-        findBlacks(secret, combination.getValue, blacks),
-        findWhites(secret, combination.getValue, whites),
+        findBlacks(secret, proposed, blacks),
+        findWhites(secret, proposed, whites),
         trimmed
       )
     );

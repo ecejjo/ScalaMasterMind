@@ -15,7 +15,7 @@ case class Combination(value: List[Char], result: Result = new Result()) {
   }
 
   def calculateResult(secret: List[Char]): Combination = {
-    new Combination(this.value_, this.result_.calculate(secret, this))
+    new Combination(this.value_, this.result_.calculate(secret, this.value_))
   }
 
   def isWinner(): Boolean = {

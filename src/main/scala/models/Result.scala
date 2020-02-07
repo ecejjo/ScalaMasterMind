@@ -23,11 +23,12 @@ case class Result(value: List[Char] = List()) {
     );
   }
 
+  // Removes one white for each black
   def trimWhites(blacks: List[Char] = List(),
                  whites: List[Char] = List(),
                  trimmed: List[Char] = List()
                             ): List[Char] = {
-    println("...................................")
+    println(".....trimWhites()..............................")
     println("blacks is: " + blacks);
     println("whites is: " + whites);
     blacks.isEmpty match {
@@ -37,9 +38,9 @@ case class Result(value: List[Char] = List()) {
   }
 
   def findBlacks(secret: List[Char], proposed: List[Char], blacks: List[Char]): List[Char] = {
-    println("...................................")
+    println(".....findBlacks()..............................")
     println("secret is: " + secret);
-    println("combination is: " + proposed);
+    println("proposed is: " + proposed);
     println("blacks is: " + blacks);
     secret.isEmpty match {
       case true => blacks;
@@ -54,9 +55,9 @@ case class Result(value: List[Char] = List()) {
   }
 
   def findWhites(secret: List[Char], proposed: List[Char], whites: List[Char]): List[Char] = {
-    println("...................................")
+    println(".....findWhites()..............................")
     println("secret is: " + secret);
-    println("combination is: " + proposed);
+    println("proposed is: " + proposed);
     println("whites is: " + whites);
     proposed.isEmpty match {
       case true => whites;

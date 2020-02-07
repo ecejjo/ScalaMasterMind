@@ -25,9 +25,8 @@ case class Combination(value: List[Char], result: Result = new Result()) {
   override def equals(that: Any): Boolean =
     that match {
       case that: Combination =>
-        value_ == that.value_
-        result_ == that.result_
+        (this.value_ == that.value_) &&
+          (this.result_ == that.result_)
       case _ => false
     }
-
 }

@@ -4,7 +4,7 @@ case class Combination(value: List[Char], result: Result = new Result()) {
 
   private val COMBINATION_SIZE = 4;
 
-  private var value_ : List[Char] = value;
+  private val value_ : List[Char] = value;
 
   private val result_ = result;
 
@@ -21,5 +21,13 @@ case class Combination(value: List[Char], result: Result = new Result()) {
   def isWinner(): Boolean = {
     this.result_.isWinner();
   }
+
+  override def equals(that: Any): Boolean =
+    that match {
+      case that: Combination =>
+        value_ == that.value_
+        result_ == that.result_
+      case _ => false
+    }
 
 }

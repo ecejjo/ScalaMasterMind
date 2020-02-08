@@ -20,10 +20,19 @@ class GameTest extends FunSuite {
   }
 
   test("Get combination index 0") {
-    val game = new Game();
     val combination = new Combination(looser);
-    assert(game.propose(combination).getCombination(0) == combination);
+    val game = new Game().propose(combination);
+    assert(game.getCombination(0) == combination);
   }
+
+  test("Get combination index 2") {
+    val combination1 = new Combination(looser);
+    val combination2 = new Combination(looser);
+    val combination3 = new Combination(winner);
+    val game = new Game().propose(combination1).propose(combination2).propose(combination3);
+    assert(game.getCombination(2) == combination3);
+  }
+
 
   test("Is not winner") {
     val combination = new Combination(looser);
